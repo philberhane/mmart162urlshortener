@@ -1,0 +1,22 @@
+.main {
+    text-align: center;
+}
+
+.main form {
+    display: grid;
+    grid-template-columns: auto;
+
+}
+
+.main form input {
+    margin: auto;
+    width: 50%;
+
+}
+
+.main form button {
+ margin-top: 15px;   
+width: 10%;
+    margin: auto;
+    
+}
