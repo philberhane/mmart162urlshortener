@@ -16,6 +16,17 @@ app.use(logger('dev'))
 app.use(errorhandler())
 app.use(cors())
 
+app.get('/redirect', function (req, res) {
+  res.statusCode = 302
+  res.setHeader("Location", "http://www.google.com/")
+  res.end()
+});
+
+app.get('/', function (req, res) {
+  var path = require('path')
+    res.sendFile(path.resolve('../client/index.html'))
+})
+
 
 
 app.post('/response', routes.postForm)
