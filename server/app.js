@@ -8,6 +8,7 @@ const routes = require('./routes')
 
 
 let app = express()
+app.use(express.static('../client'))
 
 // Middleware: Does stuff to the request and response objects
 // before routing:
@@ -20,6 +21,18 @@ app.use(cors())
 
 app.post('/response', routes.postForm)
 
+
+app.get('/', function (req, res) {
+  var path = require('path')
+    res.sendFile(path.resolve('../client/index.html'))
+})
+
+
+/*app.get('/redirect', function (req, res) {
+  res.statusCode = 302
+  res.setHeader("Location", "http://www.google.com/")
+  res.end()
+})*/
 
 /*
 // NOTE: We will worry about comments next week:
