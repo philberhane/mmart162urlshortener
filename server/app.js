@@ -23,16 +23,19 @@ app.post('/response', routes.postForm)
 
 
 app.get('/', function (req, res) {
-  var path = require('path')
+    const path = require('path')
     res.sendFile(path.resolve('../client/index.html'))
 })
 
-
-/*app.get('/redirect', function (req, res) {
-  res.statusCode = 302
-  res.setHeader("Location", "http://www.google.com/")
+app.get('/:code', function (req, res) {
+  //  res.status(200).send(req.params)
+    res.statusCode = 302
+  res.setHeader("Location", "https://www.google.com/search?source=lnms&q="+ req.params.code)
   res.end()
-})*/
+    
+})
+
+
 
 /*
 // NOTE: We will worry about comments next week:
