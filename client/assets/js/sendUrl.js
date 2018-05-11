@@ -12,8 +12,8 @@ const sendUrl = () => {
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
-        console.log(data)
-        document.getElementById('results').innerHTML = data.message
+       // console.log(data)
+      //  document.getElementById('results').innerHTML = data.message
 
     })
 }

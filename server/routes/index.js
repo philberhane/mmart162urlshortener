@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const models = require('../models')
 
-const database = []
+const Shortener = mongoose.model('Shortener', models.Shortener)
 
 module.exports = {
 
@@ -26,19 +26,25 @@ module.exports = {
                 message: 'Your code is too short! Please enter a 6 letter code'
                 })
             }
-
-            res.status(200).send({
-                message : `Here is your code: ${req.body.code}`,
-            })
-
+            
+        data = req.body
+        data.date_created = new Date()
+        const shortener = new Shortener(data)
+        shortener.save(function (err, model) {
+            if (err) {
+                return console.error(err)
+            }
+            console.log(model, 'saved!!!')
+            res.status(201).send({postId: model._id})
+        })
     }
-      addPost(req, res) {
+     /* addPost(req, res) {
             data = req.body
             data.date_created = new Date()
             const blog = new Shortener(data)
             shortener.save(function (err, model) {
                 if (err) {
                     return console.error(err)
-                }
+                }*/
 
 }
