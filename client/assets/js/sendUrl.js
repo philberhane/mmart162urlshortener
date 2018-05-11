@@ -13,7 +13,7 @@ const sendUrl = () => {
         return response.json();
     }).then(function(data) {
        // console.log(data)
-      //  document.getElementById('results').innerHTML = data.message
+       document.getElementById('results').innerHTML = data.message
 
     })
 }

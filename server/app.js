@@ -34,13 +34,8 @@ app.get('/', function (req, res) {
     res.sendFile(path.resolve('../client/index.html'))
 })
 
-app.get('/:code', function (req, res) {
-  //  res.status(200).send(req.params)
-    res.statusCode = 302
-  res.setHeader("Location", "https://www.google.com/search?source=lnms&q="+ req.params.code)
-  res.end()
 
-})
+app.get('/:code', routes.redirectUrl) 
 
 
 /*
