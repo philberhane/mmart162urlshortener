@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 //Define a schema
 const ShortenerSchema = new mongoose.Schema({
     date_created: Date,
-    url: String,
+    longUrl: String,
     code: String,
 
 })
