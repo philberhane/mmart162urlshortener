@@ -34,14 +34,32 @@ module.exports = {
         data = req.body
         data.date_created = new Date()
         const shortener = new Shortener(data)
-        shortener.save( (err, model) => {
-            if (err) {
-                return console.error(err)
-            }
-            console.log(model, 'saved!!!')
-
+        
+        
+    Shortener.findOne({ 'code': shortener.code },  (err, codeExists) => {
+      
+        if(codeExists) {
+           res.status(500).send({
+                message: 'This code already exists! Please try another.'
+                }) 
+        } else {
+            
+            shortener.save( (err, model) => {
+            
             res.status(201).send({postId: model._id, message : `Here is your Shortened URL: localhost:3000/${req.body.code}`})
         })
+            
+        }
+        
+        
+    })
+        
+        
+    
+    
+    
+    
+    
     },
      
     
