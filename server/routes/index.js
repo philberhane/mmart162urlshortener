@@ -8,7 +8,7 @@ module.exports = {
        
     
     postForm(req, res) {
-        console.log(req.body)
+       // console.log(req.body)
 
 
             if (req.body.code.length === 0) {
@@ -32,21 +32,47 @@ module.exports = {
     
             
         data = req.body
-        data.date_created = new Date()
+        
+        var someDate = new Date();
+        var numberOfDaysToAdd = 2;
+        const expiration = someDate.setDate(someDate.getDate() + numberOfDaysToAdd) 
+        
+        data.date_expires = expiration
+        
         const shortener = new Shortener(data)
         
+        const today = new Date()
         
-    Shortener.findOne({ 'code': shortener.code },  (err, codeExists) => {
+        
+    Shortener.findOne({ 'code': shortener.code },  (err, shortener) => {
       
-        if(codeExists) {
-           res.status(500).send({
+        if(shortener) {
+            
+            if (today >= shortener.date_expires) {
+               console.log(shortener.date_expires)
+               shortener.set({ longUrl : req.body.longUrl})
+                shortener.set({date_expires : expiration})
+                shortener.save( (err, updatedObj) => {
+                    if (err) return handleError(err);
+                    
+                    res.status(201).send({postId: updatedObj._id, message : `Here is your Shortened URL: localhost:3000/${req.body.code}`})
+                console.log(updatedObj, 'saved!!!')
+                    
+                        })
+            } else {
+            
+             
+                res.status(500).send({
                 message: 'This code already exists! Please try another.'
-                }) 
+                })} 
+            
         } else {
             
             shortener.save( (err, model) => {
             
             res.status(201).send({postId: model._id, message : `Here is your Shortened URL: localhost:3000/${req.body.code}`})
+                console.log(model, 'saved!!!')
+                
         })
             
         }
