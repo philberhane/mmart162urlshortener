@@ -10,7 +10,7 @@ module.exports = {
     postForm(req, res) {
        // console.log(req.body)
 
-
+        if (req.body.longUrl.indexOf('http://') === 0 || req.body.longUrl.indexOf('https://') === 0 ) {
             if (req.body.code.length === 0) {
                 const alphabet = 'abcdefghijklmnopqrstuvwxyz'
                 let randomGeneratedCode = ''
@@ -25,16 +25,27 @@ module.exports = {
 
             else if (req.body.code.length > 0 && req.body.code.length < 6) {
                 res.status(500).send({
-                message: 'Your code is too short! Please enter a 6 letter code'
+                message: 'Error: Your code is too short! Please enter a 6 letter code'
                 })
+                return
             }
+        
+    } else {
+            res.status(500).send({
+                message: 'Error: Please include an "http://" or "https://" in your URL'
+                })
+                return
+        }
+        
+        
+        
         
     
             
         data = req.body
         
-        var someDate = new Date();
-        var numberOfDaysToAdd = 2;
+        const someDate = new Date();
+        const numberOfDaysToAdd = 2;
         const expiration = someDate.setDate(someDate.getDate() + numberOfDaysToAdd) 
         
         data.date_expires = expiration
@@ -44,12 +55,13 @@ module.exports = {
         const today = new Date()
         
         
-    Shortener.findOne({ 'code': shortener.code },  (err, shortener) => {
+    Shortener.findOne({ 'code': shortener.code },  (err, codeExists) => {
       
-        if(shortener) {
+        if(codeExists) {
             
             if (today >= shortener.date_expires) {
-               console.log(shortener.date_expires)
+          
+                //console.log(shortener.date_expires)
                shortener.set({ longUrl : req.body.longUrl})
                 shortener.set({date_expires : expiration})
                 shortener.save( (err, updatedObj) => {
@@ -63,7 +75,7 @@ module.exports = {
             
              
                 res.status(500).send({
-                message: 'This code already exists! Please try another.'
+                message: 'Error: This code already exists! Please try another.'
                 })} 
             
         } else {
