@@ -67,7 +67,7 @@ module.exports = {
                 shortener.save( (err, updatedObj) => {
                     if (err) return handleError(err);
                     
-                    res.status(201).send({postId: updatedObj._id, message : `Here is your Shortened URL: localhost:3000/${req.body.code}`})
+                    res.status(201).send({postId: updatedObj._id, message : `Here is your shortened URL: localhost:3000/${req.body.code}`})
                 console.log(updatedObj, 'saved!!!')
                     
                         })
@@ -82,7 +82,7 @@ module.exports = {
             
             shortener.save( (err, model) => {
             
-            res.status(201).send({postId: model._id, message : `Here is your Shortened URL: localhost:3000/${req.body.code}`})
+            res.status(201).send({postId: model._id, message : `Here is your shortened URL: localhost:3000/${req.body.code}`})
                 console.log(model, 'saved!!!')
                 
         })
