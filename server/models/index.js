@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 //Define a schema
 const ShortenerSchema = new mongoose.Schema({
-    date_created: Date,
+    date_expires: Date,
     longUrl: String,
     code: String,
 

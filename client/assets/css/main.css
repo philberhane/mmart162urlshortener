@@ -1,23 +1,44 @@
+body {
+    font-family: sans-serif;
+     width: 100%;
+    height: 100%;
+     margin:0;
+    padding:0;
+    background-image: url("../img/photo-1505238680356-667803448bb6.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
 
 .main {
     text-align: center;
-}
-
-.main form {
-    display: grid;
-    grid-template-columns: auto;
+    
 
 }
 
-.main form input {
-    margin: auto;
-    width: 50%;
+.main h1 {
+    color: white;
+}
+
+.main button {
+    background-color: white;
+    border-color: none;
+    color: grey;
+    border-radius: 5px;
 
 }
 
-.main form button {
- margin-top: 15px;
-width: 10%;
-    margin: auto;
+
+
+.main  input {
+    background-color: transparent;
+    border-radius: 5px;
+    color: white;
 
 }
+
+#results {
+    color: white;
+}
+

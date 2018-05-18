@@ -4,6 +4,8 @@ const sendUrl = () => {
         longUrl : document.getElementById('original').value ,
         code : document.getElementById('code').value
     }
+    
+    
 
     fetch('http://localhost:3000/response', {
         method: 'POST',
