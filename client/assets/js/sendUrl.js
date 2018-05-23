@@ -7,7 +7,7 @@ const sendUrl = () => {
 
 
 
-    fetch(`${process.env.BASE_URL}/response`, {
+    fetch(`${window.location.href}/response`, {
         method: 'POST',
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}
