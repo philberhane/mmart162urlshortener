@@ -23,14 +23,13 @@ app.use(bodyParser.json())
 app.use(logger('dev'))
 app.use(errorhandler())
 app.use(cors())
-
-
+app.use(express.static(path.join(__dirname, '../client/')))
 
 app.post('/response', routes.postForm)
 
 app.get('/', function (req, res) {
     const path = require('path')
-    res.sendFile(path.resolve('../client/index.html'))
+    res.sendFile(path.join(__dirname, '../client/index.html'))
 })
 
 
