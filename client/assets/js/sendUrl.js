@@ -4,10 +4,10 @@ const sendUrl = () => {
         longUrl : document.getElementById('original').value ,
         code : document.getElementById('code').value
     }
-    
-    
 
-    fetch('http://localhost:3000/response', {
+
+
+    fetch(`${process.env.BASE_URL}/response`, {
         method: 'POST',
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}
