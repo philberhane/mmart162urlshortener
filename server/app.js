@@ -9,8 +9,7 @@ const mongodb = require('mongodb')
 const mongoose = require('mongoose')
 
 //create database connection
-const DATABASE_NAME = 'url_database'
-const MONGODB_URI = `${process.env.MONGODB_URI}/${DATABASE_NAME}`
+const MONGODB_URI = `${process.env.MONGODB_URI}`
 mongoose.connect(MONGODB_URI)
 mongoose.Promise = global.Promise
 const db = mongoose.connection
@@ -46,4 +45,4 @@ app.put('/posts/:postId/comments/:commentId', routes.comments.updateComment)
 app.delete('/posts/:postId/comments/:commentId', routes.comments.removeComment)
 */
 
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
