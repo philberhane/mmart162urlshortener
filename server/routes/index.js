@@ -82,7 +82,7 @@ module.exports = {
             
             shortener.save( (err, model) => {
             
-            res.status(201).send({postId: model._id, message : `Here is your shortened URL: localhost:3000/${req.body.code}`})
+            res.status(201).send({postId: model._id, message : `Here is your shortened URL: https://sheltered-plateau-89521.herokuapp.com//${req.body.code}`})
                 console.log(model, 'saved!!!')
                 
         })
