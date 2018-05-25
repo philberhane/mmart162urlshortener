@@ -8,7 +8,7 @@ module.exports = {
        
     
     postForm(req, res) {
-       // console.log(req.body)
+        console.log(req.body)
 
         if (req.body.longUrl.indexOf('http://') === 0 || req.body.longUrl.indexOf('https://') === 0 ) {
             if (req.body.code.length === 0) {
@@ -82,7 +82,7 @@ module.exports = {
             
             shortener.save( (err, model) => {
             
-            res.status(201).send({postId: model._id, message : `Here is your shortened URL: localhost:3000/${req.body.code}`})
+            res.status(201).send({postId: model._id, message : `Here is your shortened URL: https://sheltered-plateau-89521.herokuapp.com//${req.body.code}`})
                 console.log(model, 'saved!!!')
                 
         })
@@ -107,9 +107,14 @@ module.exports = {
             if (err) {
                 return handleError(err);
             }
-            console.log(urlObject.longUrl)
-            res.redirect(urlObject.longUrl)
-            res.end()
+            try{
+                
+                console.log(urlObject.longUrl)
+                res.redirect(urlObject.longUrl)
+                res.end()
+            } catch(e) {
+                console.error(e)
+            }
             
         })
   

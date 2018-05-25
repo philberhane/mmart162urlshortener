@@ -7,7 +7,7 @@ const sendUrl = () => {
     
     
 
-    fetch('http://localhost:3000/response', {
+    fetch('https://sheltered-plateau-89521.herokuapp.com/response', {
         method: 'POST',
         body: JSON.stringify(input),
         headers: { "Content-Type": "application/json"}
