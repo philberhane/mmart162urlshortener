@@ -107,9 +107,14 @@ module.exports = {
             if (err) {
                 return handleError(err);
             }
-            console.log(urlObject.longUrl)
-            res.redirect(urlObject.longUrl)
-            res.end()
+            try{
+                
+                console.log(urlObject.longUrl)
+                res.redirect(urlObject.longUrl)
+                res.end()
+            } catch(e) {
+                console.error(e)
+            }
             
         })
   
