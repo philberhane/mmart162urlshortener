@@ -47,4 +47,4 @@ app.put('/posts/:postId/comments/:commentId', routes.comments.updateComment)
 app.delete('/posts/:postId/comments/:commentId', routes.comments.removeComment)
 */
 
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
