@@ -8,7 +8,7 @@ module.exports = {
        
     
     postForm(req, res) {
-       // console.log(req.body)
+        console.log(req.body)
 
         if (req.body.longUrl.indexOf('http://') === 0 || req.body.longUrl.indexOf('https://') === 0 ) {
             if (req.body.code.length === 0) {
